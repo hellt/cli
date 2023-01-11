@@ -287,25 +287,8 @@ Our installer enables it by adding some hooks to your shell:
 * a hook when changing directory that sets up project environments
 * a hook for the “command not found” scenario that installs that command
 
-`tea` formalizes (in a CLI/TUI sense) the concept of magic.
 
-In an environment where there
-is magic we try to be clever and infer what you want. Without magic we are
-strict and require precise specification of your intent.
-
-You can disable magic by specifying `--disable-magic` or exporting `MAGIC=0`
-to your shell environment.
-
-The primary magic we apply is determining if you want to use your virtual
-environment or not. Strictly `tea --env` is required to inject it, but when
-magic is enabled we try to figure out if you *just wanted that*. Our goal is
-to be smart and useful for your productivity.
-
-We do some magic per dependency. This is currently hard-coded logic in tea/cli
-itself, but we intend to make it general with a `magic.ts` file per package
-in the [pantry].
-
-Currently magic is limited (and a great place for contributions†).
+# Developer Environments
 
 For example, if we detect that your project is a GitHub Action we read the
 `action.yml` and make the right version of node available.
@@ -334,8 +317,8 @@ Probably the place you’ll want to start is by supplementing the
 git clone https://github.com/teaxyz/cli tea
 cd tea
 
-tea run foo       # runs the local checkout passing `foo` as an argument
-tea install-self  # deploys the local checkout into your `~/.tea`
+deno task run foo   # runs the local checkout passing `foo` as an argument
+deno task install   # deploys the local checkout into your `~/.tea`
 ```
 
 This alias makes it so you can execute your local checkout from anywhere:
